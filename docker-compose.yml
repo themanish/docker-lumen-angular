@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+
+  lumen:
+    image: themanish/lumen
+    container_name: lumen
+    build:
+      context: ./lumen
+    volumes:
+      - ./lumen:/var/www/html
+      - vendor:/var/www/html/vendor
+    ports:
+      - '80:80'
+
+  angular:
+    image: themanish/angular
+    container_name: angular
+    build:
+      context: ./angular
+    volumes:
+      - ./angular:/app
+      - node_modules:/app/node_modules
+    ports:
+      - "4200:4200"
+
+volumes:
+  vendor:
+  node_modules:
